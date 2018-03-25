@@ -1,0 +1,23 @@
+{
+  "name": "Todo sample application",
+  "version": "1.0.0",
+  "description": "This is a todo application, again.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aubacca/todoApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aubacca/todoApp/issues"
+  },
+  "homepage": "https://github.com/Aubacca/todoApp#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
