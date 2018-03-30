@@ -1,5 +1,5 @@
 {
-  "name": "Todo sample application",
+  "name": "todoApp",
   "version": "1.0.0",
   "description": "This is a todo application, again.",
   "main": "index.js",
