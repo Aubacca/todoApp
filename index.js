@@ -12,6 +12,7 @@ const baseUrl = "/api/v1";
 //
 // Application initializations.
 const app = express();
+
 app.use(express.json());
 
 
@@ -124,19 +125,19 @@ app.put(baseUrl + "/todos/:id", (req, res) => {
   }
   //
   // Validation updated todo values.
-  const {error} = validateTodo(req.body)
+  const {error} = validateTodo(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   // Get indox of todo in list.
   const todoIndex = todoList.findIndex(todo => todo._id === req.params.id);
   // Update todo with new data.
-  todoList[todoIndex].todo = req.body.todo;
-  todoList[todoIndex].remark = req.body.remark;
-  todoList[todoIndex].public = req.body.public;
+  findOne.todo = req.body.todo;
+  findOne.remark = req.body.remark;
+  findOne.public = req.body.public;
   //
   // Set back the updated todo.
-  res.send(todoList[todoIndex]);
+  res.send(findOne);
 });
 
 // @todo
