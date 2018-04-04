@@ -1,11 +1,14 @@
 // Applications requirements.
 const express = require("express");
-const uuidv4 = require('uuid/v4');
-const Joi = require('joi');
+const uuidv4 = require("uuid/v4");
+const Joi = require("joi");
+
+const todoService = require("./services/todoService");
+const charEscaper = require("./services/charEspace");
 
 //
 // Application data.
-let todoList = require('./data/todos.json');
+let todoList = require("./data/todos.json");
 
 const baseUrl = "/api/v1";
 
@@ -13,7 +16,6 @@ const baseUrl = "/api/v1";
 // Application initializations.
 const app = express();
 app.use(express.json());
-
 
 todoList;
 
@@ -28,7 +30,7 @@ const notes = [
 
 //
 // Application settings.
-app.set('port', process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3000);
 
 //
 // Application Routing.
@@ -47,41 +49,44 @@ app.get(baseUrl * "/notes/:noteId", (req, res) => {
   res.send(findOne);
 });
 
-
 // @todo
 // Todo utils.
-validateTodo = function (todo) {
+validateTodo = function(todo) {
   // Validation
   const schemaTodo = Joi.object().keys({
-    todo: Joi.string().min(3).max(200).required(),
+    todo: Joi.string()
+      .min(3)
+      .max(200)
+      .required(),
     remark: Joi.string().max(200),
     public: Joi.boolean().required()
   });
   //
   return Joi.validate(todo, schemaTodo);
-}
-
-findById = function (todoId) {
-  return todoList.find(todo => todo._id === todoId);
-}
+};
 
 // @todo
 // Get all todos.
 app.get(baseUrl + "/todos", (req, res) => {
-  let foundTodos = todoList;
+  //  let foundTodos = todoList;
+  let foundTodos = todoService.getAll();
   if (req.query.done) {
-    foundTodos = foundTodos.filter(todo => todo.done === JSON.parse(req.query.done));
+    foundTodos = foundTodos.filter(
+      todo => todo.done === JSON.parse(req.query.done)
+    );
   }
   //
-  res.send(foundTodos)
+  res.send(foundTodos);
 });
 
 // @todo
 // Get one specific todo.
 app.get(baseUrl + "/todos/:id", (req, res) => {
-  const findOne = findById(req.params.id);
+  const findOne = todoService.findById(req.params.id);
   if (!findOne) {
-    return res.status(404).send(`The todo with ID ${req.params.id} was not found!`);
+    return res
+      .status(404)
+      .send(`The todo with ID ${req.params.id} was not found!`);
   }
   res.send(findOne);
 });
@@ -97,7 +102,7 @@ app.get(baseUrl + "/todos-open", (req, res) => {
 // Add a todo.
 app.post(baseUrl + "/todos", (req, res) => {
   // Validation
-  let {error} = validateTodo(req.body);
+  let { error } = validateTodo(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -105,7 +110,7 @@ app.post(baseUrl + "/todos", (req, res) => {
   const newTodo = {
     _id: uuidv4(),
     todo: req.body.todo,
-    pubic: req.body.public || true,
+    public: req.body.public || true,
     remark: req.body.remark,
     done: false
   };
@@ -118,13 +123,15 @@ app.post(baseUrl + "/todos", (req, res) => {
 // Update a todo.
 app.put(baseUrl + "/todos/:id", (req, res) => {
   // Find the todo to be updated in the list.
-  const findOne = findById(req.params.id);
+  const findOne = todoService.findById(req.params.id);
   if (!findOne) {
-    return res.status(404).send(`The todo with ID ${req.params.id} was not found!`);
+    return res
+      .status(404)
+      .send(`The todo with ID ${req.params.id} was not found!`);
   }
   //
   // Validation updated todo values.
-  const {error} = validateTodo(req.body)
+  const { error } = validateTodo(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -143,9 +150,11 @@ app.put(baseUrl + "/todos/:id", (req, res) => {
 // Delete a todo.
 app.delete(baseUrl + "/todos/:id", (req, res) => {
   // Find the todo to be updated.
-  const findOne = findById(req.params.id);
+  const findOne = todoService.findById(req.params.id);
   if (!findOne) {
-    return res.status(404).send(`The todo with ID ${req.params.id} was not found!`);
+    return res
+      .status(404)
+      .send(`The todo with ID ${req.params.id} was not found!`);
   }
   //
   // Delete todo from list.
@@ -160,6 +169,9 @@ app.delete(baseUrl + "/todos/:id", (req, res) => {
 // Add input validation.
 
 const appPort = process.env.PORT || 3000;
-app.listen(app.get('port'), () =>
-  console.log(`Backend is listening on port ${app.get('port')}.`)
+app.listen(app.get("port"), () =>
+  console.log(`Backend is listening on port ${app.get("port")}.`)
 );
+
+const isLittler = charEscaper.unescape("&lt;");
+console.log("&lt;=", isLittler);
