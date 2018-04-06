@@ -1,6 +1,24 @@
+const Joi = require("joi");
+const uuidv4 = require("uuid/v4");
+
 //
 // Application todo data.
 let todoList = require("../data/todos.json");
+
+// Todo utils.
+validate = function(todo) {
+  // Validation
+  const schemaTodo = Joi.object().keys({
+    todo: Joi.string()
+      .min(3)
+      .max(200)
+      .required(),
+    remark: Joi.string().max(200),
+    public: Joi.boolean().required()
+  });
+  //
+  return Joi.validate(todo, schemaTodo);
+};
 
 getAll = () => {
   return todoList;
@@ -10,5 +28,22 @@ findById = function(todoId) {
   return todoList.find(todo => todo._id === todoId);
 };
 
-exports.getAll = getAll;
-exports.findById = findById;
+insert = function(rawData) {
+  const newTodo = {
+    _id: uuidv4(),
+    todo: rawData.todo,
+    public: rawData.public || true,
+    remark: rawData.remark,
+    done: false
+  };
+  todoList.push(newTodo);
+  //
+  return newTodo;
+};
+
+module.exports = {
+  getAll: getAll,
+  findById: findById,
+  insert: insert,
+  validate: validate
+};
