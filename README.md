@@ -6,4 +6,4 @@ Server is defined in the server directory.
 
 ## Client
 
-Cleint is defined in the client directory.
+Client is defined in the client directory.
