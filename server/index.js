@@ -1,7 +1,5 @@
 // Applications requirements.
 const express = require("express");
-const uuidv4 = require("uuid/v4");
-const Joi = require("joi");
 
 const todoService = require("./services/todoService");
 const charEscaper = require("./services/charEspace");
@@ -17,15 +15,41 @@ const baseUrl = "/api/v1";
 const app = express();
 app.use(express.json());
 
+/*
 todoList;
+*/
 
 const notes = [
-  { id: 1, note: "Learn Python", status: "New" },
-  { id: 2, note: "Plan tracks", status: "In process" },
-  { id: 3, note: "Order switches and tracks", status: "New" },
-  { id: 4, note: "Find new project", status: "In process" },
-  { id: 5, note: "Repair computer", status: "Closed" },
-  { id: 6, note: "Repair bicylce", status: "Closed" }
+  {
+    id: 1,
+    note: "Learn Python",
+    status: "New"
+  },
+  {
+    id: 2,
+    note: "Plan tracks",
+    status: "In process"
+  },
+  {
+    id: 3,
+    note: "Order switches and tracks",
+    status: "New"
+  },
+  {
+    id: 4,
+    note: "Find new project",
+    status: "In process"
+  },
+  {
+    id: 5,
+    note: "Repair computer",
+    status: "Closed"
+  },
+  {
+    id: 6,
+    note: "Repair bicylce",
+    status: "Closed"
+  }
 ];
 
 //
@@ -50,25 +74,8 @@ app.get(baseUrl * "/notes/:noteId", (req, res) => {
 });
 
 // @todo
-// Todo utils.
-validateTodo = function(todo) {
-  // Validation
-  const schemaTodo = Joi.object().keys({
-    todo: Joi.string()
-      .min(3)
-      .max(200)
-      .required(),
-    remark: Joi.string().max(200),
-    public: Joi.boolean().required()
-  });
-  //
-  return Joi.validate(todo, schemaTodo);
-};
-
-// @todo
 // Get all todos.
 app.get(baseUrl + "/todos", (req, res) => {
-  //  let foundTodos = todoList;
   let foundTodos = todoService.getAll();
   if (req.query.done) {
     foundTodos = foundTodos.filter(
@@ -94,7 +101,9 @@ app.get(baseUrl + "/todos/:id", (req, res) => {
 // @todo
 // Get all open todos.
 app.get(baseUrl + "/todos-open", (req, res) => {
-  const findTodosDone = todoList.filter(todo => todo.done === false);
+  const findTodosDone = todoService
+    .getAll()
+    .filter(todo => todo.done === false);
   res.send(findTodosDone);
 });
 
@@ -102,19 +111,12 @@ app.get(baseUrl + "/todos-open", (req, res) => {
 // Add a todo.
 app.post(baseUrl + "/todos", (req, res) => {
   // Validation
-  let { error } = validateTodo(req.body);
+  const { error } = todoService.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   //
-  const newTodo = {
-    _id: uuidv4(),
-    todo: req.body.todo,
-    public: req.body.public || true,
-    remark: req.body.remark,
-    done: false
-  };
-  todoList.push(newTodo);
+  const newTodo = todoService.insert(req.body);
   //
   res.status(201).send(newTodo);
 });
@@ -131,7 +133,7 @@ app.put(baseUrl + "/todos/:id", (req, res) => {
   }
   //
   // Validation updated todo values.
-  const { error } = validateTodo(req.body);
+  const { error } = todoService.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -158,8 +160,12 @@ app.delete(baseUrl + "/todos/:id", (req, res) => {
   }
   //
   // Delete todo from list.
+  /*
   const index = todoList.indexOf(findOne);
   todoList.splice(index, 1);
+*/
+  const index = todoService.getAll().indexOf(findOne);
+  todoService.getAll().splice(index, 1);
   //
   // Send back the deleted todo.
   res.send(findOne);
@@ -173,5 +179,16 @@ app.listen(app.get("port"), () =>
   console.log(`Backend is listening on port ${app.get("port")}.`)
 );
 
+/*
 const isLittler = charEscaper.unescape("&lt;");
 console.log("&lt;=", isLittler);
+
+const greeting = require("./services/greetings");
+console.log(greeting.sayHelloInEnglish());
+console.log(greeting.sayHelloInSpanish());
+
+const books = require("./services/book");
+console.log(books.film101);
+console.log(books.film102);
+console.log(books.getIt());
+*/
