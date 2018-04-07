@@ -14,7 +14,8 @@ validate = function(todo) {
       .max(200)
       .required(),
     remark: Joi.string().max(200),
-    public: Joi.boolean().required()
+    public: Joi.boolean().required(),
+    done: Joi.boolean()
   });
   //
   return Joi.validate(todo, schemaTodo);
@@ -41,9 +42,22 @@ insert = function(rawData) {
   return newTodo;
 };
 
+update = function(id, rawData) {
+  // Get indox of todo in list.
+  const todoUpdated = findById(id);
+  // Update todo with new data.
+  todoUpdated.todo = rawData.todo;
+  todoUpdated.remark = rawData.remark;
+  todoUpdated.public = rawData.public;
+  todoUpdated.done = rawData.done || false;
+  //
+  return todoUpdated;
+}
+
 module.exports = {
   getAll: getAll,
   findById: findById,
   insert: insert,
+  update: update,
   validate: validate
 };
