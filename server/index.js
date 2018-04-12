@@ -1,5 +1,6 @@
 // Applications requirements.
 const express = require("express");
+const cors = require('cors');
 
 const todoService = require("./services/todoService");
 const charEscaper = require("./services/charEspace");
@@ -14,21 +15,32 @@ const baseUrl = "/api/v1";
 // Application initializations.
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //
 // Application settings.
 app.set("port", process.env.PORT || 3000);
 
+/*
+app.get(baseUrl + "/todos", function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+});¨
+*/
+
 // @todo
 // Get all todos.
-app.get(baseUrl + "/todos", (req, res) => {
+app.get(baseUrl + "/todos", (req, res, next) => {
   let foundTodos = todoService.getAll();
   if (req.query.done) {
     foundTodos = foundTodos.filter(
       todo => todo.done === JSON.parse(req.query.done)
     );
   }
+  console.log('get todos.')
   //
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
   res.send(foundTodos);
 });
 
