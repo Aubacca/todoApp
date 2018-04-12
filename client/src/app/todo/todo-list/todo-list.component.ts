@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TodoPropertyChange } from "./TodoPropertyChange";
+import { TodoService } from "../../services/todo.service";
 
 @Component({
   selector: "app-todo-list",
@@ -7,10 +8,11 @@ import { TodoPropertyChange } from "./TodoPropertyChange";
   styleUrls: ["./todo-list.component.css"]
 })
 export class TodoListComponent implements OnInit {
-  private todoPropChange: TodoPropertyChange;
 
-  constructor() {}
+  todoList: any[];
+  constructor(private _todoService: TodoService) {}
 
   ngOnInit() {
+    this._todoService.find().subscribe(data => this.todoList = data)
   }
 }
