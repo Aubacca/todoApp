@@ -12,9 +12,5 @@ export class TodoListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.todoPropChange.type = "BOOLEAN";
-    this.todoPropChange.fieldName = "Done";
-    this.todoPropChange.newValue = "true";
-    this.todoPropChange.oldValue = "false";
   }
 }
