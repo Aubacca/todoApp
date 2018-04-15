@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { TodoDetailComponent } from './todo/todo-detail/todo-detail.component';
+import { TodoService } from './services/todo.service';
 
 
 @NgModule({
@@ -15,10 +17,11 @@ import { TodoDetailComponent } from './todo/todo-detail/todo-detail.component';
     TodoDetailComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ TodoService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
