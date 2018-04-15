@@ -1,6 +1,6 @@
 // Applications requirements.
 const express = require("express");
-const cors = require('cors');
+//const cors = require('cors');
 
 const todoService = require("./services/todoService");
 const charEscaper = require("./services/charEspace");
@@ -15,7 +15,16 @@ const baseUrl = "/api/v1";
 // Application initializations.
 const app = express();
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+/*
+app.use(function(req, res, next) {
+  console.log('CORS fix on response.');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+*/
 
 //
 // Application settings.
@@ -36,11 +45,15 @@ app.get(baseUrl + "/todos", (req, res, next) => {
       todo => todo.done === JSON.parse(req.query.done)
     );
   }
-  console.log('get todos.')
-  //
+/*
+  console.log('CORS fix on response.');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Methods", "GET, POST","PUT");
+*/
   res.send(foundTodos);
 });
 

@@ -1,11 +1,19 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">ToDo List</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div ng-if="todoList">
+  <div *ngFor="let todoItem of todoList">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="../../../assets/image/todoList.png" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{todoItem.todo}}</h5>
+        <p class="card-text">{{todoItem.remark}}</p>
+        <div *ngIf="todoItem.done === false; else elseBlock">
+          <a href="#" class="btn btn-success">Todo Erledigt!</a>
+        </div>
+        <ng-template #elseBlock>---</ng-template>
+        <p class="card-text">{{todoItem | json}}</p>
+      </div>
+    </div>
+    <br>
   </div>
 </div>
 
 
-{{todoList | json}}
