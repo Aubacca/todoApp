@@ -14,6 +14,13 @@ const baseUrl = "/api/v1";
 // Application initializations.
 const app = express();
 app.use(express.json());
+app.use(function(req, res, next) {
+  console.log('fixing CORS for response.');
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
 //
 // Application settings.
