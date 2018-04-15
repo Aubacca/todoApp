@@ -34,6 +34,9 @@
 /libpeerconnection.log
 /src/assets/keys
 /samples
+/client/start.bat
+/server/start.bat
+
 
 npm-debug.log
 testem.log
