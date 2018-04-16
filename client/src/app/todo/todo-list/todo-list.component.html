@@ -1,4 +1,14 @@
 <div ng-if="todoList">
+  <ul>
+    <div *ngFor="let todoItem of todoList">
+      <li class="todo-list-item"><a href="#">{{todoItem.todo}}</a> [{{todoItem.done}}]</li>
+    </div>
+  </ul>
+</div>
+
+
+<!--
+<div ng-if="todoList">
   <div *ngFor="let todoItem of todoList">
     <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="../../../assets/image/todoList.png" alt="Card image cap">
@@ -15,5 +25,4 @@
     <br>
   </div>
 </div>
-
-
+-->

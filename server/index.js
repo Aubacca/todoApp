@@ -15,7 +15,6 @@ const baseUrl = "/api/v1";
 // Application initializations.
 const app = express();
 app.use(express.json());
-<<<<<<< HEAD
 //app.use(cors());
 /*
 app.use(function(req, res, next) {
@@ -26,7 +25,6 @@ app.use(function(req, res, next) {
   next();
 });
 */
-=======
 app.use(function(req, res, next) {
   console.log('fixing CORS for response.');
   res.header('Access-Control-Allow-Origin', '*');
@@ -34,7 +32,6 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
->>>>>>> b1f2bdae6d741e0cb6322f165538da7aa5d928b6
 
 //
 // Application settings.
