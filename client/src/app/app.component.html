@@ -8,11 +8,18 @@
 -->
 </div>
 
+<nav>
+  <a routerLink="/" routerLinkActive="active">Home</a>
+  <a routerLink="/list" routerLinkActive="active">Todo List</a>
+</nav>
+
 <div class="container">
+  <router-outlet></router-outlet>
+<!--
   <app-todo-list></app-todo-list>
   <hr>
   <app-todo-detail></app-todo-detail>
-  <router-outlet></router-outlet>
+-->
 </div>
 
 

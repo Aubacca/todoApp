@@ -13,6 +13,11 @@ export class TodoService {
     return this._http.get<any>("http://localhost:3000/api/v1/todos", options);
   }
 
+  findOne(todoId): Observable<any> {
+    let options: Object = { responseType: "json"};
+    //
+    return this._http.get<any>(`http://localhost:3000/api/v1/todos/${todoId}`, options);
+  }
 }
 
 
