@@ -1,7 +1,7 @@
 <div ng-if="todoList">
   <ul>
     <div *ngFor="let todoItem of todoList">
-      <li class="todo-list-item"><a href="#">{{todoItem.todo}}</a> [{{todoItem.done}}]</li>
+      <li class="todo-list-item"><a routerLink="/details/{{todoItem._id}}">{{todoItem.todo}}</a> [{{todoItem.done}}]</li>
     </div>
   </ul>
 </div>
