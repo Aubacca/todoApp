@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TodoService } from '../../services/todo.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { TodoService } from "../../services/todo.service";
 
 @Component({
-  selector: 'app-todo-detail',
-  templateUrl: './todo-detail.component.html',
-  styleUrls: ['./todo-detail.component.css']
+  selector: "app-todo-detail",
+  templateUrl: "./todo-detail.component.html",
+  styleUrls: ["./todo-detail.component.css"]
 })
 export class TodoDetailComponent implements OnInit {
-  private todoItem: any;
+  public todoItem: any;
 
-  constructor(private route: ActivatedRoute, private todoService: TodoService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private todoService: TodoService
+  ) {}
 
   ngOnInit() {
-    this.route.params.subscribe( params => {
+    this.route.params.subscribe(params => {
       console.log(params);
-      this.todoService.findOne(params.id).subscribe(data => this.todoItem = data)
-    }
-    
+      this.todoService
+        .findOne(params.id)
+        .subscribe(data => (this.todoItem = data));
+    });
   }
-
 }

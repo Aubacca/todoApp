@@ -1,13 +1,43 @@
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="../../../assets/image/todoDetail.png" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">ToDo Details</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-6">
+      <div class="card w-75">
+        <div class="card-header">
+          <img class="card-img-top float-right" src="../../../assets/image/todoDetail.png" alt="Todo Details" style="max-width: 2em;">
+          <h5 class="card-title ">ToDo Details</h5>
+        </div>
+        <div class="card-body ">
+          <div *ngIf="!!todoItem ">
+            <p class="card-text ">{{todoItem.todo}}</p>
+            <p class="card-text font-weight-light font-italic ">{{todoItem.remark}}</p>
+            <p class="card-text">
+              <span *ngIf="!!todoItem.done; else notDone">
+                <button type="button" class="btn btn-secondary btn-sm">Done</button>
+              </span>
+              <ng-template #notDone>
+                <button type="button" class="btn btn-primary btn-sm">Not Done</button>
+              </ng-template>
+            </p>
+
+            <p class="card-text">
+              <span *ngIf="!!todoItem.public; else notPublic">
+                <button type="button" class="btn btn-success btn-sm">Public</button>
+              </span>
+              <ng-template #notPublic>
+                <button type="button" class="btn btn-danger btn-sm">Private</button>
+              </ng-template>
+            </p>
+            <p class="card-text font-weight-light ">{{todoItem._id}}</p>
+          </div>
+          <div class="card-footer text-muted">
+            <a href="# " routerLink="/list " class="btn btn-primary ">Todo List</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div *ngIf="todoItem" >{{todoItem | json }}</div>
+
+
+<div *ngIf="todoItem ">{{todoItem | json }}</div>
