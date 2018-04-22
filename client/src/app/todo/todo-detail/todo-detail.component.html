@@ -1,3 +1,25 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="accent">LIKE</button>
+    <button mat-button routerLink="/list" color="primary">Todo List</button>
+  </mat-card-actions>
+</mat-card>
+
+
+
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col col-lg-6">
@@ -12,25 +34,29 @@
             <p class="card-text font-weight-light font-italic ">{{todoItem.remark}}</p>
             <p class="card-text">
               <span *ngIf="!!todoItem.done; else notDone">
-                <button type="button" class="btn btn-secondary btn-sm">Done</button>
-              </span>
+                <button mat-fab color="accent"><mat-icon class="example-icon">verified_user</mat-icon> Done</button>
+<!--                 <button type="button" class="btn btn-secondary btn-sm">Done</button>
+ -->              </span>
               <ng-template #notDone>
-                <button type="button" class="btn btn-primary btn-sm">Not Done</button>
-              </ng-template>
+                <button mat-fab color="Warn">Not Done</button>
+<!--                 <button type="button" class="btn btn-primary btn-sm">Not Done</button>
+ -->              </ng-template>
             </p>
 
             <p class="card-text">
               <span *ngIf="!!todoItem.public; else notPublic">
-                <button type="button" class="btn btn-success btn-sm">Public</button>
+<!--                 <button type="button" class="btn btn-success btn-sm">Public</button>
+ -->                <button mat-raised-button color="primary">Public</button>
               </span>
               <ng-template #notPublic>
-                <button type="button" class="btn btn-danger btn-sm">Private</button>
+<!--                 <button type="button" class="btn btn-danger btn-sm">Private</button>
+ -->                <button mat-button color="accent">Private</button>
               </ng-template>
             </p>
             <p class="card-text font-weight-light ">{{todoItem._id}}</p>
           </div>
           <div class="card-footer text-muted">
-            <a href="# " routerLink="/list " class="btn btn-primary ">Todo List</a>
+            <a href="#" routerLink="/list " class="btn btn-primary ">Todo List</a>
           </div>
         </div>
       </div>
@@ -41,3 +67,5 @@
 
 
 <div *ngIf="todoItem ">{{todoItem | json }}</div>
+
+
