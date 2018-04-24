@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
@@ -23,6 +23,7 @@ import { TodoService } from './services/todo.service';
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MaterialModule,
     HttpClientModule
   ],

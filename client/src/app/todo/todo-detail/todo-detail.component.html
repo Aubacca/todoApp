@@ -1,24 +1,54 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button color="accent">LIKE</button>
-    <button mat-button routerLink="/list" color="primary">Todo List</button>
-  </mat-card-actions>
-</mat-card>
+<hr>
+
+<mat-grid-list cols="2" rowHeight="1:1.1">
+  <mat-grid-tile>¨
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="accent">LIKE</button>
+        <button mat-button routerLink="/list" color="primary">Todo List</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card>
+      <mat-card-header>Todo Item</mat-card-header>
+      <mat-card-subtitle>Add or update Todo Item</mat-card-subtitle>
+      <mat-card-content>
+        <form #heroForm="ngForm"  (ngSubmit)="onSubmit(heroForm)">
+          <div class="form-group">
+            <label for="todo">Todo:</label>
+            <input id="todo" type="text" class="form-control" name="todo" required>
+          </div>
+          <div class="form-group">
+            <label for="publicTodo">Is public:</label>
+            <input id="publicTodo" type="text" class="form-control" name="publicTodo" required>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Save</button>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 
 
+
+
+<hr>
 
 <div class="container">
   <div class="row justify-content-md-center">
@@ -34,23 +64,28 @@
             <p class="card-text font-weight-light font-italic ">{{todoItem.remark}}</p>
             <p class="card-text">
               <span *ngIf="!!todoItem.done; else notDone">
-                <button mat-fab color="accent"><mat-icon class="example-icon">verified_user</mat-icon> Done</button>
-<!--                 <button type="button" class="btn btn-secondary btn-sm">Done</button>
- -->              </span>
+                <button mat-fab color="accent">
+                  <mat-icon class="example-icon">verified_user</mat-icon> Done</button>
+                <!--                 <button type="button" class="btn btn-secondary btn-sm">Done</button>
+ -->
+              </span>
               <ng-template #notDone>
                 <button mat-fab color="Warn">Not Done</button>
-<!--                 <button type="button" class="btn btn-primary btn-sm">Not Done</button>
- -->              </ng-template>
+                <!--                 <button type="button" class="btn btn-primary btn-sm">Not Done</button>
+ -->
+              </ng-template>
             </p>
 
             <p class="card-text">
               <span *ngIf="!!todoItem.public; else notPublic">
-<!--                 <button type="button" class="btn btn-success btn-sm">Public</button>
- -->                <button mat-raised-button color="primary">Public</button>
+                <!--                 <button type="button" class="btn btn-success btn-sm">Public</button>
+ -->
+                <button mat-raised-button color="primary">Public</button>
               </span>
               <ng-template #notPublic>
-<!--                 <button type="button" class="btn btn-danger btn-sm">Private</button>
- -->                <button mat-button color="accent">Private</button>
+                <!--                 <button type="button" class="btn btn-danger btn-sm">Private</button>
+ -->
+                <button mat-button color="accent">Private</button>
               </ng-template>
             </p>
             <p class="card-text font-weight-light ">{{todoItem._id}}</p>
@@ -67,5 +102,3 @@
 
 
 <div *ngIf="todoItem ">{{todoItem | json }}</div>
-
-

@@ -23,4 +23,8 @@ export class TodoDetailComponent implements OnInit {
         .subscribe(data => (this.todoItem = data));
     });
   }
+
+  onSubmit (formsData) {
+    console.log(formsData);
+  }
 }
