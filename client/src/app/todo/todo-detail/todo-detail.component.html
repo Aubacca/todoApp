@@ -1,3 +1,31 @@
+<div>
+  <form #currentData="ngForm" (ngSubmit)="onSubmit(currentData)">
+    <div class="form-group">
+      <label for="todo">Todo:</label>
+      <input id="todo" [(ngModel)]="todoItem.todo" name="todo" class="form-control" type="text" required #todo="ngModel">
+    </div>
+    todo class: {{todo.className}}
+    <br>
+    <div [hidden]="todo.valid || todo.pristine">
+      Todo is required
+    </div>
+    <div class="form-group">
+      <label for="remark">Remark:</label>
+      <input id="remark" [(ngModel)]="todoItem.remark" name="remark" class="form-control" type="text">
+    </div>
+    <div class="form-group">
+      <label for="public">Public:</label>
+      <input id="public" [(ngModel)]="todoItem.public" name="public" class="form-control" type="checkbox" required>
+    </div>
+    <div class="form-group">
+      <label for="done">Done:</label>
+      <input id="done" [(ngModel)]="todoItem.done" name="done" class="form-control" type="checkbox" required>
+    </div>
+    <button type="submit">Save</button>
+    form valid: {{currentData.form.valid | json }}
+  </form>
+</div>
+
 <hr>
 
 <mat-grid-list cols="2" rowHeight="1:1.1">
@@ -26,7 +54,7 @@
       <mat-card-header>Todo Item</mat-card-header>
       <mat-card-subtitle>Add or update Todo Item</mat-card-subtitle>
       <mat-card-content>
-        <form #heroForm="ngForm"  (ngSubmit)="onSubmit(heroForm)">
+        <form #heroForm="ngForm" (ngSubmit)="onSubmit(heroForm)">
           <div class="form-group">
             <label for="todo">Todo:</label>
             <input id="todo" type="text" class="form-control" name="todo" required>
