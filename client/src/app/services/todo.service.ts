@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class TodoService {
@@ -8,13 +8,13 @@ export class TodoService {
   constructor(private _http: HttpClient) { }
 
   find(): Observable<any> {
-    let options: Object = { responseType: "json"};
+    const options = { responseType: 'json');
     //
-    return this._http.get<any>("http://localhost:3000/api/v1/todos", options);
+    return this._http.get<any>('http://localhost:3000/api/v1/todos', options);
   }
 
   findOne(todoId): Observable<any> {
-    let options: Object = { responseType: "json"};
+    const options: Object = { responseType: 'json'};
     //
     return this._http.get<any>(`http://localhost:3000/api/v1/todos/${todoId}`, options);
   }
@@ -22,7 +22,7 @@ export class TodoService {
 
 
 /**
- * 
+ *
   getWeather(cityName: string): Observable<IWeather> {
     console.log("getWeather>cityName=", cityName);
     let options: Object = { responseType: "json" };
