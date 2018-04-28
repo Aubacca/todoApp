@@ -31,10 +31,13 @@ export class TodoDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      window.scrollTo(0, 0);
       console.log(params);
-      this.todoService
+      if (params.id) {
+        this.todoService
         .findOne(params.id)
         .subscribe(data => (this.todoItem = data));
+      }
     });
   }
 
@@ -42,5 +45,10 @@ export class TodoDetailComponent implements OnInit {
     console.log(formsData);
     console.log('formsData.value:', formsData.value);
     console.log('todoItem:', this.todoItem);
+    if (this.todoItem._id) {
+      this.todoService.updateTodo(this.todoItem);
+    } else {
+      this.todoService.addTodo(this.todoItem);
+    }
   }
 }

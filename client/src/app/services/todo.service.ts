@@ -1,25 +1,39 @@
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { Todo } from '../todo/todo-detail/todo-detail.component';
 
 @Injectable()
 export class TodoService {
-
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   find(): Observable<any> {
-    const options = { responseType: 'json');
+    // const options = { responseType: 'json'};
     //
-    return this._http.get<any>('http://localhost:3000/api/v1/todos', options);
+    return this._http.get<any>('http://localhost:3000/api/v1/todos');
   }
 
   findOne(todoId): Observable<any> {
-    const options: Object = { responseType: 'json'};
+    const options: Object = { responseType: 'json' };
     //
-    return this._http.get<any>(`http://localhost:3000/api/v1/todos/${todoId}`, options);
+    return this._http.get<any>(`http://localhost:3000/api/v1/todos/${todoId}`);
+  }
+
+  addTodo(todo: Todo) {
+    const options: Object = { responseType: 'json' };
+    //
+    console.log('Add new todo:', todo);
+    // return this._http.post<any>(`http://localhost:3000/api/v1/todos/${todoId}`, options);
+  }
+
+  updateTodo(todo: Todo) {
+    const options: Object = { responseType: 'json' };
+    //
+    console.log('Update todo:', todo);
+    // return this._http.put<any>(`http://localhost:3000/api/v1/todos/${todoId}`, options);
   }
 }
-
 
 /**
  *
