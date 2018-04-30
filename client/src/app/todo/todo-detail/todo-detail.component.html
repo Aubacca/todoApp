@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="todoItem">
   <form #currentData="ngForm" (ngSubmit)="onSubmit(currentData)">
     <div class="form-group">
       <label for="todo">Todo:</label>

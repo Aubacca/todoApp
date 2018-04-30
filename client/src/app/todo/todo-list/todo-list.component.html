@@ -1,7 +1,9 @@
 <mat-list>
   <h3 mat-subheader>
     <mat-icon mat-list-icon>folder</mat-icon>Todo List
-    <mat-list-item><a mat-raised-button routerLink="/details" color="accent">Add Todo</a></mat-list-item>
+    <mat-list-item>
+      <a mat-mini-fab mat-raised-button routerLink="/details" color="accent" title="Add new todo">+</a>
+    </mat-list-item>
   </h3>
   <mat-list-item *ngFor="let todoItem of todoList">
     <mat-icon mat-list-icon>note</mat-icon>
@@ -10,6 +12,7 @@
     </h4>
     <p mat-line>Done: {{todoItem.done}} / Public: {{todoItem.public}}</p>
     <mat-divider></mat-divider>
+    <button mat-mini-fab (click)="deleteItem(todoItem)" title="Delete this item ..">--</button>
   </mat-list-item>
 </mat-list>
 
