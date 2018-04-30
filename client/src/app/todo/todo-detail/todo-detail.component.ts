@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 import { Todo } from './../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
@@ -14,7 +15,8 @@ export class TodoDetailComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _todoService: TodoService
+    private _todoService: TodoService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -40,11 +42,15 @@ export class TodoDetailComponent implements OnInit {
     console.log('formsData.value:', formsData.value);
     console.log('todoItem:', this._todoItem);
     if (this._todoItem._id) {
-      this._todoService
-        .updateTodo(this._todoItem)
-        .subscribe(data =>
-          console.log('Client-service>Todo successfully update: ', data)
-        );
+      this._todoService.updateTodo(this._todoItem).subscribe(
+        data => console.log('Client-service>Todo successfully update: ', data),
+        error => {
+          console.log('Client-service>Todo error update: ', error, error.error);
+          this.snackBar.open(error.error, 'Close', {
+            duration: 5000
+          });
+        }
+      );
     } else {
       this._todoService
         .addTodo(this._todoItem)
