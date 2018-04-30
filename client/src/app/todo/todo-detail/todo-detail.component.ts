@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TodoService } from '../../services/todo.service';
 
-export class Todo {
-  constructor(
-    public _id: number,
-    public toto: string,
-    public done: boolean,
-    public remark?: string
-  ) {}
-}
+import { Todo } from './../../models/todo.model';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo-detail',
@@ -17,38 +10,47 @@ export class Todo {
   styleUrls: ['./todo-detail.component.css']
 })
 export class TodoDetailComponent implements OnInit {
-  public todoItem: any = {
-    todo: '',
-    remark: '',
-    public: false,
-    done: false
-  };
+  private _todoItem: Todo;
 
   constructor(
-    private route: ActivatedRoute,
-    private todoService: TodoService
+    private _route: ActivatedRoute,
+    private _todoService: TodoService
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this._route.params.subscribe(params => {
       window.scrollTo(0, 0);
-      console.log(params);
-      if (params.id) {
-        this.todoService
-        .findOne(params.id)
-        .subscribe(data => (this.todoItem = data));
+      console.log('params: ', params);
+      if (params && params.id) {
+        this._todoService
+          .findOne(params.id)
+          .subscribe(data => (this._todoItem = data));
+      } else {
+        this._todoItem = { _id: '', todo: '', done: false, public: false };
+        console.log('new todo!');
       }
     });
   }
 
+  get todoItem(): Todo {
+    return this._todoItem;
+  }
   onSubmit(formsData) {
     console.log(formsData);
     console.log('formsData.value:', formsData.value);
-    console.log('todoItem:', this.todoItem);
-    if (this.todoItem._id) {
-      this.todoService.updateTodo(this.todoItem);
+    console.log('todoItem:', this._todoItem);
+    if (this._todoItem._id) {
+      this._todoService
+        .updateTodo(this._todoItem)
+        .subscribe(data =>
+          console.log('Client-service>Todo successfully update: ', data)
+        );
     } else {
-      this.todoService.addTodo(this.todoItem);
+      this._todoService
+        .addTodo(this._todoItem)
+        .subscribe(data =>
+          console.log('Client-service>Todo successfully created: ', data)
+        );
     }
   }
 }

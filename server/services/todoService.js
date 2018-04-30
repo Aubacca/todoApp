@@ -1,21 +1,25 @@
-const Joi = require("joi");
-const uuidv4 = require("uuid/v4");
+const Joi = require('joi');
+const uuidv4 = require('uuid/v4');
 
 //
 // Application todo data.
-let todoList = require("../data/todos.json");
+let todoList = require('../data/todos.json');
 
 // Todo utils.
 validate = function(todo) {
+  console.log('Server validate>todo: ', todo);
   // Validation
   const schemaTodo = Joi.object().keys({
     todo: Joi.string()
       .min(3)
       .max(200)
       .required(),
-    remark: Joi.string().max(200),
+    remark: Joi.string()
+      .allow('')
+      .max(200),
     public: Joi.boolean().required(),
-    done: Joi.boolean()
+    done: Joi.boolean(),
+    _id: Joi.string().allow('')
   });
   //
   return Joi.validate(todo, schemaTodo);
@@ -52,7 +56,7 @@ update = function(id, rawData) {
   todoUpdated.done = rawData.done || false;
   //
   return todoUpdated;
-}
+};
 
 module.exports = {
   getAll: getAll,

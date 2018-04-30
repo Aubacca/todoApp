@@ -1,15 +1,15 @@
 // Applications requirements.
-const express = require("express");
+const express = require('express');
 //const cors = require('cors');
 
-const todoService = require("./services/todoService");
-const charEscaper = require("./services/charEspace");
+const todoService = require('./services/todoService');
+const charEscaper = require('./services/charEspace');
 
 //
 // Application data.
-let todoList = require("./data/todos.json");
+let todoList = require('./data/todos.json');
 
-const baseUrl = "/api/v1";
+const baseUrl = '/api/v1';
 
 //
 // Application initializations.
@@ -35,7 +35,7 @@ app.use(function(req, res, next) {
 
 //
 // Application settings.
-app.set("port", process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 
 /*
 app.get(baseUrl + "/todos", function (req, res, next) {
@@ -45,14 +45,14 @@ app.get(baseUrl + "/todos", function (req, res, next) {
 
 // @todo
 // Get all todos.
-app.get(baseUrl + "/todos", (req, res, next) => {
+app.get(baseUrl + '/todos', (req, res, next) => {
   let foundTodos = todoService.getAll();
   if (req.query.done) {
     foundTodos = foundTodos.filter(
       todo => todo.done === JSON.parse(req.query.done)
     );
   }
-/*
+  /*
   console.log('CORS fix on response.');
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
@@ -66,7 +66,7 @@ app.get(baseUrl + "/todos", (req, res, next) => {
 
 // @todo
 // Get one specific todo.
-app.get(baseUrl + "/todos/:id", (req, res) => {
+app.get(baseUrl + '/todos/:id', (req, res) => {
   const findOne = todoService.findById(req.params.id);
   if (!findOne) {
     return res
@@ -78,7 +78,7 @@ app.get(baseUrl + "/todos/:id", (req, res) => {
 
 // @todo
 // Get all open todos.
-app.get(baseUrl + "/todos-open", (req, res) => {
+app.get(baseUrl + '/todos-open', (req, res) => {
   const findTodosDone = todoService
     .getAll()
     .filter(todo => todo.done === false);
@@ -87,7 +87,7 @@ app.get(baseUrl + "/todos-open", (req, res) => {
 
 // @todo
 // Add a todo.
-app.post(baseUrl + "/todos", (req, res) => {
+app.post(baseUrl + '/todos', (req, res) => {
   // Validation
   const { error } = todoService.validate(req.body);
   if (error) {
@@ -101,7 +101,8 @@ app.post(baseUrl + "/todos", (req, res) => {
 
 // @todo
 // Update a todo.
-app.put(baseUrl + "/todos/:id", (req, res) => {
+app.put(baseUrl + '/todos/:id', (req, res) => {
+  console.log('Server>updating todo with id:', req.params);
   // Find the todo to be updated in the list.
   const findOne = todoService.findById(req.params.id);
   if (!findOne) {
@@ -115,12 +116,12 @@ app.put(baseUrl + "/todos/:id", (req, res) => {
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
-  res.send(todoService.update(req.params.id, req.body))
+  res.send(todoService.update(req.params.id, req.body));
 });
 
 // @todo
 // Delete a todo.
-app.delete(baseUrl + "/todos/:id", (req, res) => {
+app.delete(baseUrl + '/todos/:id', (req, res) => {
   // Find the todo to be updated.
   const findOne = todoService.findById(req.params.id);
   if (!findOne) {
@@ -134,14 +135,15 @@ app.delete(baseUrl + "/todos/:id", (req, res) => {
   todoService.getAll().splice(index, 1);
   //
   // Send back the deleted todo.
+  console.log('Todo successfully deleted: ', findOne);
   res.send(findOne);
 });
 
 // @todo
 // Add input validation.
 const appPort = process.env.PORT || 3000;
-app.listen(app.get("port"), () =>
-  console.log(`Backend is listening on port ${app.get("port")}.`)
+app.listen(app.get('port'), () =>
+  console.log(`Backend is listening on port ${app.get('port')}.`)
 );
 
 /*
