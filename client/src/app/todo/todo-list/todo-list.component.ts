@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { TodoPropertyChange } from "./TodoPropertyChange";
-import { TodoService } from "../../services/todo.service";
+import { Component, OnInit } from '@angular/core';
+import { TodoPropertyChange } from './TodoPropertyChange';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
-  selector: "app-todo-list",
-  templateUrl: "./todo-list.component.html",
-  styleUrls: ["./todo-list.component.css"]
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
 
@@ -13,6 +13,6 @@ export class TodoListComponent implements OnInit {
   constructor(private _todoService: TodoService) {}
 
   ngOnInit() {
-    this._todoService.find().subscribe(data => this.todoList = data)
+    this._todoService.find().subscribe(data => this.todoList = data);
   }
 }
