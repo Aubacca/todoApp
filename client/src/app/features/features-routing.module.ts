@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'list', component: TodoListComponent },
   { path: 'details', component: TodoDetailComponent },
   { path: 'details/:id', component: TodoDetailComponent },
-  { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: '**', component: TodoListComponent }
 ];
 
