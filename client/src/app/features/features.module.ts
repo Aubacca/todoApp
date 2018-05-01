@@ -6,20 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 
 import {
-  FeatureRoutingModule,
+  FeaturesRoutingModule,
   ROUNTING_COMPONENTS
-} from './feature-routing.module';
+} from './features-routing.module';
 import { TodoService } from '@app/features/services/todo.service';
 
 @NgModule({
   declarations: [ROUNTING_COMPONENTS],
   imports: [
     CommonModule,
-    FeatureRoutingModule,
+    FeaturesRoutingModule,
     FormsModule,
     HttpClientModule,
     MaterialModule
   ],
   providers: [TodoService]
 })
-export class FeatureModule {}
+export class FeaturesModule {}
