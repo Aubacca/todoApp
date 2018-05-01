@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
-import { Todo } from './../../models/todo.model';
-import { TodoService } from '../../feature/services/todo.service';
+import { TodoService } from '@app/features/services/todo.service';
+import { Todo } from '@app/features/models/todo.model';
 
 @Component({
   selector: 'app-todo-detail',
