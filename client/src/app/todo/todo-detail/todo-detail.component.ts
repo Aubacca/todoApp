@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 import { Todo } from './../../models/todo.model';
-import { TodoService } from '../../services/todo.service';
+import { TodoService } from '../../feature/services/todo.service';
 
 @Component({
   selector: 'app-todo-detail',
