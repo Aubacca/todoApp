@@ -24,7 +24,7 @@ export class TodoListComponent implements OnInit {
   deleteItem(todo: Todo) {
     console.log('todo: ', todo);
     this._todoService.delete(todo).subscribe(deletedTodo => {
-      console.log('todo deleted: ', deletedTodo);
+      console.log('todo successfully deleted: ', deletedTodo);
       this._todoService.find().subscribe(data => this._todoList = data);
     });
   }
