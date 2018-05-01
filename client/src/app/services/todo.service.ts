@@ -12,11 +12,11 @@ export class TodoService {
   constructor(private _http: HttpClient) {}
 
   find(): Observable<Todo[]> {
-    return this._http.get<any>(this.HOST_URL);
+    return this._http.get<Todo[]>(this.HOST_URL);
   }
 
   findOne(todoId): Observable<Todo> {
-    return this._http.get<any>(`${this.HOST_URL}/${todoId}`);
+    return this._http.get<Todo>(`${this.HOST_URL}/${todoId}`);
   }
 
   addTodo(todo: Todo): Observable<Todo> {

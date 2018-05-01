@@ -15,36 +15,3 @@
     <button mat-mini-fab (click)="deleteItem(todoItem)" title="Delete this item ..">--</button>
   </mat-list-item>
 </mat-list>
-
-
-<!--
-<div ng-if="todoList">
-  <ul>
-    <div *ngFor="let todoItem of todoList">
-      <li class="todo-list-item">
-        <a routerLink="/details/{{todoItem._id}}">{{todoItem.todo}}</a> [{{todoItem.done}}]/ [{{todoItem.public}}]</li>
-    </div>
-  </ul>
-</div>
--->
-
-
-<!--
-<div ng-if="todoList">
-  <div *ngFor="let todoItem of todoList">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="../../../assets/image/todoList.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{todoItem.todo}}</h5>
-        <p class="card-text">{{todoItem.remark}}</p>
-        <div *ngIf="todoItem.done === false; else elseBlock">
-          <a href="#" class="btn btn-success">Todo Erledigt!</a>
-        </div>
-        <ng-template #elseBlock>---</ng-template>
-        <p class="card-text">{{todoItem | json}}</p>
-      </div>
-    </div>
-    <br>
-  </div>
-</div>
--->
