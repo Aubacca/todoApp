@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
-import { TodoDetailComponent } from './todo/todo-detail/todo-detail.component';
+import { TodoDetailViewComponent } from './todo/todo-detail/todo-detail-view.component';
 
 export const ROUNTING_COMPONENTS = [
-  TodoDetailComponent,
+  TodoDetailViewComponent,
   TodoListComponent];
 
 const routes: Routes = [
   { path: 'list', component: TodoListComponent },
-  { path: 'details', component: TodoDetailComponent },
-  { path: 'details/:id', component: TodoDetailComponent },
+  { path: 'details', component: TodoDetailViewComponent },
+  { path: 'details/:id', component: TodoDetailViewComponent },
   { path: '**', component: TodoListComponent }
 ];
 

@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MaterialModule } from '../material.module';
 
+import { TodoListViewComponent } from '@app/features/todo/todo-list/todo-list-view.component';
+
 import {
   FeaturesRoutingModule,
   ROUNTING_COMPONENTS
@@ -12,7 +14,7 @@ import {
 import { TodoService } from '@app/features/services/todo.service';
 
 @NgModule({
-  declarations: [ROUNTING_COMPONENTS],
+  declarations: [ROUNTING_COMPONENTS, TodoListViewComponent],
   imports: [
     CommonModule,
     FeaturesRoutingModule,

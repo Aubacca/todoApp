@@ -6,26 +6,28 @@ import { TodoPropertyChange } from './TodoPropertyChange';
 
 @Component({
   selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  template: `<app-todo-list-view
+  [todoList]="todoList"
+  (deleteTodo)="onDeleteTodo($event)"></app-todo-list-view>`,
+  styleUrls: []
 })
 export class TodoListComponent implements OnInit {
   private _todoList: Todo[];
   constructor(private _todoService: TodoService) {}
 
   ngOnInit() {
-    this._todoService.find().subscribe(data => this._todoList = data);
+    this._todoService.find().subscribe(data => (this._todoList = data));
   }
 
   get todoList(): Todo[] {
     return this._todoList;
   }
 
-  deleteItem(todo: Todo) {
-    console.log('todo: ', todo);
+  onDeleteTodo(todo: Todo) {
+    console.log('onDeleteTodo>todo: ', todo);
     this._todoService.delete(todo).subscribe(deletedTodo => {
       console.log('todo successfully deleted: ', deletedTodo);
-      this._todoService.find().subscribe(data => this._todoList = data);
+      this._todoService.find().subscribe(data => (this._todoList = data));
     });
   }
 }

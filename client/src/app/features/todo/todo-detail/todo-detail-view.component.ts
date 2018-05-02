@@ -6,11 +6,11 @@ import { TodoService } from '@app/features/services/todo.service';
 import { Todo } from '@app/features/models/todo.model';
 
 @Component({
-  selector: 'app-todo-detail',
-  templateUrl: './todo-detail.component.html',
-  styleUrls: ['./todo-detail.component.css']
+  selector: 'app-todo-detail-view',
+  templateUrl: './todo-detail-view.component.html',
+  styleUrls: ['./todo-detail-view.component.css']
 })
-export class TodoDetailComponent implements OnInit {
+export class TodoDetailViewComponent implements OnInit {
   private _todoItem: Todo;
 
   constructor(
