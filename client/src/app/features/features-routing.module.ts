@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
-import { TodoDetailViewComponent } from './todo/todo-detail/todo-detail-view.component';
+import { TodoDetailComponent } from './todo/todo-detail/todo-detail.component';
 
-export const ROUNTING_COMPONENTS = [
-  TodoDetailViewComponent,
-  TodoListComponent];
+export const ROUNTING_COMPONENTS = [TodoDetailComponent, TodoListComponent];
 
 const routes: Routes = [
   { path: 'list', component: TodoListComponent },
-  { path: 'details', component: TodoDetailViewComponent },
-  { path: 'details/:id', component: TodoDetailViewComponent },
+  { path: 'details', component: TodoDetailComponent },
+  { path: 'details/:id', component: TodoDetailComponent },
   { path: '**', component: TodoListComponent }
 ];
 
@@ -18,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FeaturesRoutingModule { }
+export class FeaturesRoutingModule {}
