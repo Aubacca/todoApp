@@ -12,6 +12,7 @@
     "lib": ["es2017", "dom"],
     "baseUrl": "src",
     "paths": {
+      "@features/*": ["app/features/*"],
       "@app/*": ["app/*"],
       "@env/*": ["environments/*"]
     }

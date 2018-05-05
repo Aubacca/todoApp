@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FeaturesModule } from './features/features.module';
 import { MaterialModule } from './material.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,8 @@ import { MaterialModule } from './material.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FeaturesModule
+    FeaturesModule,
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
