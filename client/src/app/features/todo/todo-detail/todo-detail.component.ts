@@ -9,7 +9,8 @@ import { Todo } from '@app/features/models/todo.model';
   selector: 'app-todo-detail',
   template: `<app-todo-detail-view
   [todoItem]="todoItem"
-  (saveTodo)="onSaveTodo($event)"></app-todo-detail-view>`
+  (saveTodo)="onSaveTodo($event)"></app-todo-detail-view>
+`
 })
 export class TodoDetailComponent implements OnInit {
   private _todoItem: Todo;
