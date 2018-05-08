@@ -27,5 +27,11 @@ export const getTodoState = createSelector(
 
 // Get Todo state elements.
 export const getAllTodos = createSelector(getTodoState, fromTodoState.getTodo);
-export const getTodosLoaded = createSelector(getTodoState, fromTodoState.getTodoLoaded);
-export const getTodosLoading = createSelector(getTodoState, fromTodoState.getTodoLoading);
+export const getTodosLoaded = createSelector(
+  getTodoState,
+  fromTodoState.getTodoLoaded
+);
+export const getTodosLoading = createSelector(
+  getTodoState,
+  fromTodoState.getTodoLoading
+);

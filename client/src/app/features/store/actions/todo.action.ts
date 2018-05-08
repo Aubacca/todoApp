@@ -22,4 +22,4 @@ export class LoadTodosSuccess implements Action {
 }
 
 // action types.
-export type TodoActions = LoadTodos | LoadTodosFail | LoadTodosSuccess;    
+export type TodoActions = LoadTodos | LoadTodosFail | LoadTodosSuccess;
