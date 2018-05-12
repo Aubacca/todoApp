@@ -1,12 +1,12 @@
 import { browser, by, element } from 'protractor';
 
 export class Todo2 {
+  a0 = element(by.css('a.a'));
+  todos = element.all(by.css('div.todo'));
+
   navigateTo() {
     return browser.get('/');
   }
-
-  a0 = element(by.css('a.a'));
-  todos = element.all(by.css('div.todo'));
 
   a0ShouldBeVisible() {
     expect(this.a0.isDisplayed()).toBeTruthy();

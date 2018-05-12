@@ -9,22 +9,7 @@ export interface TodoState {
 
 // Initial state.
 export const initialState: TodoState = {
-  data: [
-    {
-      _id: '4AB31382-0D0A-0D14-6F76-1B7CD8C79156',
-      todo: 'non, hendrerit id, ante. Nunc mauris',
-      public: false,
-      done: false,
-      remark: 'ipsum dolor sit amet, consectetuer adipiscing'
-    },
-    {
-      _id: '5E3FEBCF-F29B-6AC8-AB51-26EEA97B6930',
-      todo: 'tellus non',
-      public: true,
-      done: false,
-      remark: 'auctor odio'
-    }
-  ],
+  data: [],
   loaded: false,
   loading: false
 };
@@ -43,10 +28,12 @@ export function reducer(
       };
 
     case fromTodoActions.LOAD_TODOS_SUCCESS:
+      const data = action.payload;
       return {
         ...state,
         loaded: true,
-        loading: false
+        loading: false,
+        data
       };
 
     case fromTodoActions.LOAD_TODOS_FAIL:

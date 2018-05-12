@@ -15,7 +15,7 @@ const todosServiceStub = {
 
 xdescribe('Todo2Component', () => {
   let page: Todo2;
-  let fixture: ComponentFixture<Todo2Component>;
+  const fixture: ComponentFixture<Todo2Component>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

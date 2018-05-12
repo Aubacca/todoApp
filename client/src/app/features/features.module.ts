@@ -6,8 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../material.module';
 
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './store';
+import { reducers, effects } from './store';
 
 import { TodoListViewComponent } from '@app/features/todo/todo-list/todo-list-view.component';
 import { TodoDetailViewComponent } from '@app/features/todo/todo-detail/todo-detail-view.component';
@@ -32,7 +33,8 @@ import {
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    StoreModule.forFeature('features', reducers)
+    StoreModule.forFeature('features', reducers),
+    EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services]
 })

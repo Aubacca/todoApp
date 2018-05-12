@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { environment } from '@env/environment';
 import { Todo } from '@app/features/models/todo.model';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class TodoService {
@@ -13,6 +14,12 @@ export class TodoService {
 
   find(): Observable<Todo[]> {
     return this._http.get<Todo[]>(this.HOST_URL);
+  }
+
+  getTodo(): Observable<Todo[]> {
+    return this._http
+      .get<Todo[]>(this.HOST_URL)
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
   findOne(todoId): Observable<Todo> {
