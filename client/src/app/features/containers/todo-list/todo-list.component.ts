@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TodoService } from '@app/features/services/todo.service';
-import { Todo } from '@app/features/models/todo.model';
+import { Todo } from '@features/models/todo.model';
+import { TodoService } from '@features/services/todo.service';
+
 import { TodoPropertyChange } from './TodoPropertyChange';
 
 @Component({
@@ -10,7 +11,7 @@ import { TodoPropertyChange } from './TodoPropertyChange';
   <app-todo-list-view
   [todoList]="todoList"
   (deleteTodo)="onDeleteTodo($event)"></app-todo-list-view>`,
-  styleUrls: []
+  styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
   private _todoList: Todo[];

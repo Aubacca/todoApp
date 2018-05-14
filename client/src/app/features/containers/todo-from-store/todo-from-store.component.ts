@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Todo } from '@app/features/models/todo.model';
-
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import * as fromStore from '../../store';
+
+import { Todo } from '@features/models/todo.model';
+import * as fromStore from '@features/store';
 
 @Component({
   selector: 'app-todo-from-store',
@@ -18,7 +17,7 @@ import * as fromStore from '../../store';
     public: {{todo.public}} / done: {{todo.done}}</li>
   </ul>
 `,
-  styleUrls: []
+  styleUrls: ['./todo-from-store.component.css']
 })
 export class TodoFromStoreComponent implements OnInit {
   private _todo$: Observable<Todo[]>;

@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TodoListComponent } from './todo/todo-list/todo-list.component';
-import { TodoDetailComponent } from './todo/todo-detail/todo-detail.component';
-import { TodoFromStoreComponent } from '@features/todo/todo-from-store/todo-from-store.component';
+
+import { TodoListComponent } from '@features/containers/todo-list/todo-list.component';
+import { TodoDetailComponent } from '@features/components/todo-detail/todo-detail.component';
+import { TodoFromStoreComponent } from '@features/containers/todo-from-store/todo-from-store.component';
 
 export const ROUNTING_COMPONENTS = [
   TodoDetailComponent,

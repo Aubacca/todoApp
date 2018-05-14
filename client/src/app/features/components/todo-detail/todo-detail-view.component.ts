@@ -2,8 +2,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
-import { TodoService } from '@app/features/services/todo.service';
-import { Todo } from '@app/features/models/todo.model';
+import { TodoService } from '@features/services/todo.service';
+import { Todo } from '@features/models/todo.model';
 
 @Component({
   selector: 'app-todo-detail-view',
