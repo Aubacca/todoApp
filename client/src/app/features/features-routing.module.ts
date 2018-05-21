@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'list', component: TodoListComponent },
   { path: 'storeList', component: TodoFromStoreComponent },
   { path: 'details', component: TodoDetailComponent },
-  { path: 'details/:id', component: TodoDetailComponent },
+  { path: 'details/:todoId', component: TodoDetailComponent },
   { path: '**', component: TodoListComponent }
 ];
 

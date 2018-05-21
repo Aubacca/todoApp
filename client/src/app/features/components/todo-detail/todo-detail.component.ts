@@ -25,9 +25,9 @@ export class TodoDetailComponent implements OnInit {
     this._route.params.subscribe(params => {
       window.scrollTo(0, 0);
       console.log('params: ', params);
-      if (params && params.id) {
+      if (params && params.todoId) {
         this._todoService
-          .findOne(params.id)
+          .findOne(params.todoId)
           .subscribe(data => (this._todoItem = data));
       } else {
         this._todoItem = { _id: '', todo: '', done: false, public: false };
