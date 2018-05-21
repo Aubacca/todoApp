@@ -12,14 +12,9 @@ export class TodoService {
 
   constructor(private _http: HttpClient) {}
 
+  // Old services.
   find(): Observable<Todo[]> {
     return this._http.get<Todo[]>(this.HOST_URL);
-  }
-
-  getTodo(): Observable<Todo[]> {
-    return this._http
-      .get<Todo[]>(this.HOST_URL)
-      .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
   findOne(todoId): Observable<Todo> {
@@ -38,6 +33,13 @@ export class TodoService {
 
   delete(todo: Todo): Observable<Todo> {
     return this._http.delete<Todo>(`${this.HOST_URL}/${todo._id}`);
+  }
+
+  // New services.
+  getTodo(): Observable<Todo[]> {
+    return this._http
+      .get<Todo[]>(this.HOST_URL)
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 }
 
