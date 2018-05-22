@@ -13,9 +13,16 @@ export const ROUNTING_COMPONENTS = [
 
 const routes: Routes = [
   { path: 'list', component: TodoListComponent },
-  { path: 'storeList', component: TodoFromStoreComponent },
   { path: 'details', component: TodoDetailComponent },
   { path: 'details/:todoId', component: TodoDetailComponent },
+  {
+    path: 'todos',
+    component: TodoFromStoreComponent,
+    children: [
+      // { path: '', redirectTo: 'detail', pathMatch: 'full' },
+      { path: 'detail', component: TodoFromStoreComponent }
+    ]
+  },
   { path: '**', component: TodoListComponent }
 ];
 
